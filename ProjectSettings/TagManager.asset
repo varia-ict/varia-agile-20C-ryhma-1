@@ -4,8 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Mushroom
   - Flower
+=======
+  - Enemy
+>>>>>>> f66d612e15f7d4d9def31eb29c5454e6951d77ed
   layers:
   - Default
   - TransparentFX
