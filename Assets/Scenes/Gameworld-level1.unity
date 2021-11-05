@@ -4592,6 +4592,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 26.8
       objectReference: {fileID: 0}
+    - target: {fileID: 2587911266366487988, guid: cc2d43276e97d3043ae4bb5ecc0da778, type: 3}
+      propertyPath: basicSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587911266366487988, guid: cc2d43276e97d3043ae4bb5ecc0da778, type: 3}
+      propertyPath: sprintSpeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2587911266366487990, guid: cc2d43276e97d3043ae4bb5ecc0da778, type: 3}
       propertyPath: m_Enabled
       value: 0
