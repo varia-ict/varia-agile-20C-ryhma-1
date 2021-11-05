@@ -1,26 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
     // Variables
-    public float enemySpeed;
-    private Rigidbody enemyRb;
-    private GameObject player;
+    public Transform Player;
+    int MoveSpeed = 4;
+    int MaxDist = 10;
+    int MinDist = 5;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyRb = GetComponent<Rigidbody>();
-        player = GameObject.Find("Player");
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 lookDirection = (player.transform.position - transform.position).normalized;
+        transform.LookAt(Player);
 
-        enemyRb.AddForce(lookDirection * enemySpeed);
+        if (Vector3.Distance(transform.position, Player.position) >= MinDist)
+        {
+
+            transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+
+
+
+            if (Vector3.Distance(transform.position, Player.position) <= MaxDist)
+            {
+                //Here Call any function U want Like Shoot at here or something
+            }
+
+        }
     }
 }
