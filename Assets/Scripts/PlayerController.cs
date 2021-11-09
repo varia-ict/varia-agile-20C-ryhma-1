@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CharacterController controller = GetComponent<CharacterController>();
+        // CharacterController controller = GetComponent<CharacterController>();
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
 
