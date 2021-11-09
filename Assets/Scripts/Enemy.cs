@@ -6,41 +6,36 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
     // Variables
-<<<<<<< HEAD
-    public float enemySpeed;
-
     private Rigidbody enemyRb;
-    private GameObject player;
-=======
-    public Transform Player;
-    int MoveSpeed = 4;
-    int MaxDist = 10;
-    int MinDist = 5;
->>>>>>> 09ab4537b6e6696e134f049813ea9e384959a7ea
+    public Transform player;
+
+    private float dist;
+    public float moveSpeed;
+    public float howclose;
+
 
     // Start is called before the first frame update
     void Start()
     {
 
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(Player);
+        dist = Vector3.Distance(player.position, transform.position);
 
-        if (Vector3.Distance(transform.position, Player.position) >= MinDist)
-        {
-
-            transform.position += transform.forward * MoveSpeed * Time.deltaTime;
-
-
-
-            if (Vector3.Distance(transform.position, Player.position) <= MaxDist)
-            {
-                //Here Call any function U want Like Shoot at here or something
-            }
-
+        if (dist <= howclose)
+        { 
+            transform.LookAt(player);
+            GetComponent<Rigidbody>().AddForce(transform.forward * moveSpeed);
         }
+
+        if(dist <= 1.5f)
+        {
+            // Do damage when close to player
+        }
+
     }
 }
