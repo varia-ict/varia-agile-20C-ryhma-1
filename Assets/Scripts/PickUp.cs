@@ -7,6 +7,7 @@ public class PickUp : MonoBehaviour
     private float timerStart = 0;
     private int effectNumber = 0;
     public float bonusSpeed= 1;
+    public AudioClip pickUpSound;
 
     private void Update()
     {
@@ -37,10 +38,11 @@ public class PickUp : MonoBehaviour
     // Random bonus when player collides with PickUps (Positive or negative bonus).
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Mushroom"))
         {
+            AudioSource.PlayClipAtPoint(pickUpSound, transform.position);
             Destroy(collision.gameObject);
-            int effect = Random.Range(1, 4);
+            int effect = Random.Range(1, 3);
 
             switch (effect)
             {
@@ -57,10 +59,12 @@ public class PickUp : MonoBehaviour
 
                 case 3:
                     //Deal damage to player. Reducing hp :(
+                    effectNumber = 3;
                     break;
 
                 case 4:
                     //Extra strength to the player :)
+                    effectNumber = 4;
                     break;
             }
         }
