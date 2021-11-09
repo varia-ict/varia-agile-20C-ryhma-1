@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     // Variables
     public float enemySpeed;
+
     private Rigidbody enemyRb;
     private GameObject player;
 
