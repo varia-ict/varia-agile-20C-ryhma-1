@@ -6,18 +6,42 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI CollectedItemsText;
-    private int CollectedItems;
+    public TextMeshProUGUI GameOVerText;
+    public int CollectedItems;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-       
-        CollectedItemsText.text = "Collected Items:" + CollectedItems + "mushrooms!";
-    }
+        SetInitialCollectedItems();
 
-    // Update is called once per frame
-    void Update()
-    {
         
     }
+
+    private void Update()
+    {
+        UpdateCollectedItems();
+    }
+
+    // Start is called before the first frame update
+    public void SetInitialCollectedItems()
+    {
+        CollectedItems = 0;
+        DisplayCollectedItems(CollectedItems);
+    }
+
+    public void UpdateCollectedItems()
+    {
+       
+        DisplayCollectedItems(CollectedItems);
+    }
+
+    private void DisplayCollectedItems(int count)
+    {
+        CollectedItemsText.text = "Collected Items: " + count + " mushrooms"; 
+    }
+
+    public void GameOver()
+    {
+        GameOVerText.gameObject.SetActive(true);
+    }
 }
+ 

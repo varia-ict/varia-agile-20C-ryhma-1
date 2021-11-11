@@ -8,12 +8,20 @@ public class PickUp : MonoBehaviour
     private int effectNumber = 0;
     public float bonusSpeed= 1;
     public AudioClip pickUpSound;
+    private GameManager manager;
 
+
+    private void Start()
+    {
+        manager = FindObjectOfType<GameManager>();
+
+    }
     private void Update()
     {
         EffectTimer();
     }
 
+    
     //How long the speed effect lasts.
     void EffectTimer()
     {
@@ -43,7 +51,8 @@ public class PickUp : MonoBehaviour
             AudioSource.PlayClipAtPoint(pickUpSound, transform.position);
             Destroy(collision.gameObject);
             int effect = Random.Range(1, 3);
-
+            manager.CollectedItems += 1;
+            GameManager.Gameover();
             switch (effect)
             {
                 // Double speed :)
