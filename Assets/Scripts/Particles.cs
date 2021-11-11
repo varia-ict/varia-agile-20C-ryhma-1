@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 public class Particles : MonoBehaviour {
 
    ParticleSystem partEffect;
@@ -17,11 +20,16 @@ public class Particles : MonoBehaviour {
     }
     void OnTriggerEnter (Collider other)
     {
+<<<<<<< Updated upstream
         if(other.tag == "Pickup")
+=======
+        if(other.tag == "Mushroom")
+>>>>>>> Stashed changes
         {
             partEffect.Play();
         }
 }
+<<<<<<< Updated upstream
 =======
 public class Particles : MonoBehaviour
 {
@@ -52,3 +60,6 @@ public class Particles : MonoBehaviour
     }
 >>>>>>> Stashed changes
 }
+=======
+}
+>>>>>>> Stashed changes
