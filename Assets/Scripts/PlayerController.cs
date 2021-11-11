@@ -13,11 +13,16 @@ public class PlayerController : MonoBehaviour
     private float verticalInput;
     public float jumpStrength;
     public bool grounded;
+    public bool inGrass;
+    public bool isMoving;
     public int maxjumps;
+
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         pickUp = FindObjectOfType<PickUp>();
         playerRb = gameObject.GetComponent<Rigidbody>(); //activating rigidbody on player
     }
@@ -45,15 +50,49 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
             maxjumps++;
+            inGrass = false;
             if (maxjumps == 2)
             {
                 grounded = false;
+                inGrass = false;
             }
         }
-    }
+
+
+        if(horizontalInput != 0 || verticalInput !=0)
+        {
+            isMoving = true;
+
+        }else
+        {
+            isMoving = false;
+        }
+
+
+        if (isMoving== true && inGrass == true)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play(0);
+            }
+        }else
+            audioSource.Stop();
+        }
+
+    
+
     private void OnCollisionEnter(Collision collision)
     {
         maxjumps = 0;
         grounded = true;
+
+        if (collision.gameObject.CompareTag("Grass"))
+        {
+            inGrass = true;
+        }
+        else
+        {
+            inGrass = false;
+        }
     }
 }
