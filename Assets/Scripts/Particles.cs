@@ -4,26 +4,21 @@ using UnityEngine;
 
 public class Particles : MonoBehaviour {
 
-private bool parTriggered;
-public ParticleSystem part;	
+private bool parTriggered;	
+public GameObject partObject;
 		
 void OnTriggerEnter(Collider col)
 {
-   if(col.tag == "Player")
+   if(col.gameObject.tag == "Mushroom")
 	{
 		parTriggered = true;
 	}
 	
 }
-void OnTriggerExit(Collider other) 
-{
-   	parTriggered = false;
-    }
 
-// Use this for initialization
-void Start () 
+private void Start () 
 {
-	
+	partObject.gameObject.SetActive(false);
 }
 
 // Update is called once per frame
@@ -31,15 +26,16 @@ void Update ()
 {
 	
 	if(parTriggered == true)
-  {  
+  {
     Debug.Log("Particles playing");
-    part.Play();
+    partObject.gameObject.SetActive(true);
   }
+
 
 	if(parTriggered == false)
 	{
 		Debug.Log("Particles not playing");
-		part.Stop();		
+		partObject.gameObject.SetActive(false);		
 	}	
-}
+}		
 }
