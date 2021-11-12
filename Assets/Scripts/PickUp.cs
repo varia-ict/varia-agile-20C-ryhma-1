@@ -19,19 +19,19 @@ public class PickUp : MonoBehaviour
     {
         if(timerStart > 0 && effectNumber == 1)
         {
-            bonusSpeed =2;
+            bonusSpeed =1;
             timerStart -= Time.deltaTime;
         }
         else if (timerStart > 0 && effectNumber == 2)
         {
-            bonusSpeed =0.5f;
+            bonusSpeed = -1;
             timerStart -= Time.deltaTime;
 
         } else if(timerStart <= 0)
         {
             effectNumber = 0;
             timerStart = 0;
-            bonusSpeed = 1;
+            bonusSpeed = 0;
         }
     }
 
@@ -69,5 +69,7 @@ public class PickUp : MonoBehaviour
             }
         }
     }
+
     
+
 }

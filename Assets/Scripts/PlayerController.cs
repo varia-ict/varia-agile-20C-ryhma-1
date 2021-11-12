@@ -14,15 +14,23 @@ public class PlayerController : MonoBehaviour
     public float jumpStrength;
     public bool grounded;
     public bool inGrass;
+    public bool inWater;
+    public bool inWood;
+    public bool inDirt;
     public bool isMoving;
     public int maxjumps;
 
-    public AudioSource audioSource;
+    private AudioSource audioSource;
+    public AudioClip waterClip;
+    public AudioClip grassClip;
+    public AudioClip woodClip;
+    public AudioClip dirtClip;
 
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
         pickUp = FindObjectOfType<PickUp>();
         playerRb = gameObject.GetComponent<Rigidbody>(); //activating rigidbody on player
     }
@@ -36,14 +44,14 @@ public class PlayerController : MonoBehaviour
 
         //movement plus sprint speed script
         if (Input.GetKey(KeyCode.LeftShift))
-        {speed = sprintSpeed * pickUp.bonusSpeed;}//Multiplied by PickUp bonus speed.
+        { speed = sprintSpeed + pickUp.bonusSpeed; }//Multiplied by PickUp bonus speed.
         else
-        {speed = basicSpeed * pickUp.bonusSpeed; }//Multiplied by PickUp bonus speed.
+        { speed = basicSpeed + pickUp.bonusSpeed; }//Multiplied by PickUp bonus speed.
 
 
         //basic movement
-            transform.Translate(Vector3.forward * speed * Time.deltaTime * verticalInput);
-            transform.Translate(Vector3.right * speed * Time.deltaTime * horizontalInput);
+        transform.Translate(Vector3.forward * speed * Time.deltaTime * verticalInput);
+        transform.Translate(Vector3.right * speed * Time.deltaTime * horizontalInput);
 
         //jump
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
@@ -51,35 +59,68 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
             maxjumps++;
             inGrass = false;
+            inWater = false;
+            inWood = false;
             if (maxjumps == 2)
             {
                 grounded = false;
                 inGrass = false;
+                inWater = false;
+                inWood = false;
             }
         }
 
 
-        if(horizontalInput != 0 || verticalInput !=0)
+        if (horizontalInput != 0 || verticalInput != 0)
         {
             isMoving = true;
 
-        }else
+        }
+        else
         {
             isMoving = false;
         }
 
 
-        if (isMoving== true && inGrass == true)
+        if (isMoving == true && inGrass == true)
         {
+            audioSource.clip = grassClip;
             if (!audioSource.isPlaying)
             {
                 audioSource.Play(0);
             }
-        }else
+        }
+        else if (isMoving == true && inWater == true)
+        {
+            audioSource.clip = waterClip;
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play(0);
+            }
+        }
+        else if (isMoving == true && inWood == true)
+        {
+            audioSource.clip = woodClip;
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play(0);
+            }
+        }else if (isMoving== true && inDirt == true)
+        {
+            audioSource.clip = dirtClip;
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play(0);
+            }
+        }
+        else
+        {
             audioSource.Stop();
         }
 
-    
+
+
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -89,10 +130,24 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Grass"))
         {
             inGrass = true;
+            inWater = false;
+            inWood = false;
+            inDirt = false;
         }
-        else
+        else if (collision.gameObject.CompareTag("Water"))
         {
+            inWater = true;
             inGrass = false;
+            inWood = false;
+            inDirt = false;
+
+        }
+        else if (collision.gameObject.CompareTag("Wood"))
+        {
+            inWood = true;
+            inGrass = false;
+            inWater = false;
+            inDirt = false;
         }
     }
 }
