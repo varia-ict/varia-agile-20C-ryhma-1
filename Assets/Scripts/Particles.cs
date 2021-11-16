@@ -7,13 +7,23 @@ public class Particles : MonoBehaviour {
 private bool parTriggered;	
 public GameObject partObject;
 		
+
+IEnumerator ParticleTimer()
+{
+    partObject.gameObject.SetActive(true);
+
+    yield return new WaitForSeconds(3);
+
+    partObject.gameObject.SetActive(false);
+	parTriggered = false;
+}
+
 void OnTriggerEnter(Collider col)
 {
    if(col.gameObject.tag == "Mushroom")
 	{
 		parTriggered = true;
 	}
-	
 }
 
 private void Start () 
@@ -24,18 +34,15 @@ private void Start ()
 // Update is called once per frame
 void Update () 
 {
-	
 	if(parTriggered == true)
   {
-    Debug.Log("Particles playing");
-    partObject.gameObject.SetActive(true);
+    StartCoroutine("ParticleTimer");
   }
 
-
-	if(parTriggered == false)
-	{
-		Debug.Log("Particles not playing");
-		partObject.gameObject.SetActive(false);		
-	}	
+  if(parTriggered == false)
+  {
+    StopCoroutine("ParticleTimer");
+  }
+	
 }		
 }
