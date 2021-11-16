@@ -52,7 +52,7 @@ public class PickUp : MonoBehaviour
             Destroy(collision.gameObject);
             int effect = Random.Range(1, 3);
             manager.CollectedItems += 1;
-            GameManager.Gameover();
+            manager.GameOver();
             switch (effect)
             {
                 // Double speed :)
