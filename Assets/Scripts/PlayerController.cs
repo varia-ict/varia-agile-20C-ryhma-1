@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
-    private float speed;
+    private FootStepScript footStep;
+    public float speed;
     public float basicSpeed = 3;
     public float sprintSpeed = 5;
     private float horizontalInput;
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public bool grounded;
     public int maxjumps;
     public int jumps;
+    public bool isMoving;
     public float health = 100;
 
     Animator anim;
@@ -26,6 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         playerRb = gameObject.GetComponent<Rigidbody>(); //activating rigidbody on player
         pickup = gameObject.GetComponent<PickUp>();
+        footStep = FindObjectOfType<FootStepScript>();
         anim = GetComponent<Animator>();
 
     }
@@ -41,9 +44,9 @@ public class PlayerController : MonoBehaviour
             horizontalInput = Input.GetAxis("Horizontal");
 
             if (Input.GetKey(KeyCode.LeftShift))
-            { speed = sprintSpeed; }
+            { speed = sprintSpeed + pickup.bonusSpeed; }
             else
-            { speed = basicSpeed; }
+            { speed = basicSpeed + pickup.bonusSpeed; }
 
 
             //basic movement
@@ -59,9 +62,15 @@ public class PlayerController : MonoBehaviour
             {
                 playerRb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
                 jumps++;
+                footStep.inGrass = false;
+                footStep.inWater = false;
+                footStep.inWood = false;
                 if (jumps == maxjumps)
                 {
                     grounded = false;
+                    footStep.inGrass = false;
+                    footStep.inWater = false;
+                    footStep.inWood = false;
                 }
             }
             if(health <= 0)
@@ -76,6 +85,16 @@ public class PlayerController : MonoBehaviour
 
         }
 
+
+        if (horizontalInput != 0 || verticalInput != 0)
+        {
+            isMoving = true;
+
+        }
+        else
+        {
+            isMoving = false;
+        }
 
     }
 
