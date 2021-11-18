@@ -8,6 +8,7 @@ public class PickUp : MonoBehaviour
     private int effectNumber = 0;
     public float bonusSpeed= 1;
     public AudioClip pickUpSound;
+  
 
     private void Update()
     {
@@ -69,5 +70,6 @@ public class PickUp : MonoBehaviour
             }
         }
     }
-    
+
+
 }
