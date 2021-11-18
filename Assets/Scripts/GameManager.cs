@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateCollectedItems()
     {
-       
+
         DisplayCollectedItems(CollectedItems);
     }
 
