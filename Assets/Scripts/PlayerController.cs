@@ -6,32 +6,23 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
     private PickUp pickUp;
+    private FootStepScript footStep;
     public float speed;
     public float basicSpeed;
     public float sprintSpeed;
     private float horizontalInput;
     private float verticalInput;
     public float jumpStrength;
-    public bool grounded;
-    public bool inGrass;
-    public bool inWater;
-    public bool inWood;
-    public bool inDirt;
     public bool isMoving;
     public int maxjumps;
+    public bool grounded;
 
-    private AudioSource audioSource;
-    public AudioClip waterClip;
-    public AudioClip grassClip;
-    public AudioClip woodClip;
-    public AudioClip dirtClip;
 
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-
         pickUp = FindObjectOfType<PickUp>();
+        footStep = FindObjectOfType<FootStepScript>();
         playerRb = gameObject.GetComponent<Rigidbody>(); //activating rigidbody on player
     }
 
@@ -58,15 +49,15 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
             maxjumps++;
-            inGrass = false;
-            inWater = false;
-            inWood = false;
+            footStep.inGrass = false;
+            footStep.inWater = false;
+            footStep.inWood = false;
             if (maxjumps == 2)
             {
                 grounded = false;
-                inGrass = false;
-                inWater = false;
-                inWood = false;
+                footStep.inGrass = false;
+                footStep.inWater = false;
+                footStep.inWood = false;
             }
         }
 
@@ -80,46 +71,6 @@ public class PlayerController : MonoBehaviour
         {
             isMoving = false;
         }
-
-
-        if (isMoving == true && inGrass == true)
-        {
-            audioSource.clip = grassClip;
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play(0);
-            }
-        }
-        else if (isMoving == true && inWater == true)
-        {
-            audioSource.clip = waterClip;
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play(0);
-            }
-        }
-        else if (isMoving == true && inWood == true)
-        {
-            audioSource.clip = woodClip;
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play(0);
-            }
-        }else if (isMoving== true && inDirt == true)
-        {
-            audioSource.clip = dirtClip;
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play(0);
-            }
-        }
-        else
-        {
-            audioSource.Stop();
-        }
-
-
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -127,27 +78,5 @@ public class PlayerController : MonoBehaviour
         maxjumps = 0;
         grounded = true;
 
-        if (collision.gameObject.CompareTag("Grass"))
-        {
-            inGrass = true;
-            inWater = false;
-            inWood = false;
-            inDirt = false;
-        }
-        else if (collision.gameObject.CompareTag("Water"))
-        {
-            inWater = true;
-            inGrass = false;
-            inWood = false;
-            inDirt = false;
-
-        }
-        else if (collision.gameObject.CompareTag("Wood"))
-        {
-            inWood = true;
-            inGrass = false;
-            inWater = false;
-            inDirt = false;
-        }
     }
 }
