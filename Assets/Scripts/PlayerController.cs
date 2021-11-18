@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
-    private float speed;
+    private PickUp pickUp;
+    public float speed;
     public float basicSpeed;
     public float sprintSpeed;
     private float horizontalInput;
@@ -13,9 +14,11 @@ public class PlayerController : MonoBehaviour
     public float jumpStrength;
     public bool grounded;
     public int maxjumps;
+
     // Start is called before the first frame update
     void Start()
     {
+        pickUp = FindObjectOfType<PickUp>();
         playerRb = gameObject.GetComponent<Rigidbody>(); //activating rigidbody on player
     }
 
@@ -28,12 +31,12 @@ public class PlayerController : MonoBehaviour
 
         //movement plus sprint speed script
         if (Input.GetKey(KeyCode.LeftShift))
-        {speed = sprintSpeed;}
+        {speed = sprintSpeed * pickUp.bonusSpeed;}//Multiplied by PickUp bonus speed.
         else
-        {speed = basicSpeed;}
+        {speed = basicSpeed * pickUp.bonusSpeed; }//Multiplied by PickUp bonus speed.
 
 
-            //basic movement
+        //basic movement
             transform.Translate(Vector3.forward * speed * Time.deltaTime * verticalInput);
             transform.Translate(Vector3.right * speed * Time.deltaTime * horizontalInput);
 
