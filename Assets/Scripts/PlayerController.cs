@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
+    public Rigidbody childRigid;
     private FootStepScript footStep;
     public float speed;
     public float basicSpeed = 3;
@@ -18,7 +19,6 @@ public class PlayerController : MonoBehaviour
     public int jumps;
     public bool isMoving;
     public float health = 100;
-
     Animator anim;
     private PickUp pickup;
 
@@ -30,10 +30,11 @@ public class PlayerController : MonoBehaviour
         pickup = gameObject.GetComponent<PickUp>();
         footStep = FindObjectOfType<FootStepScript>();
         anim = GetComponent<Animator>();
+        setKinematic(true);
 
     }
 
-  
+
     void Update()
     {
         if (alive)
@@ -42,6 +43,9 @@ public class PlayerController : MonoBehaviour
             verticalInput = Input.GetAxis("Vertical");
             verticalanimationInput = Input.GetAxis("Vertical");
             horizontalInput = Input.GetAxis("Horizontal");
+
+            if (Input.GetKey(KeyCode.L))
+            { alive = false; }
 
             if (Input.GetKey(KeyCode.LeftShift))
             { speed = sprintSpeed + pickup.bonusSpeed; }
@@ -53,7 +57,7 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector3.forward * speed * Time.deltaTime * verticalInput);
             transform.Translate(Vector3.right * speed * Time.deltaTime * horizontalInput);
             anim.SetFloat("Speed", verticalanimationInput);
-            
+
 
 
 
@@ -73,31 +77,55 @@ public class PlayerController : MonoBehaviour
                     footStep.inWood = false;
                 }
             }
-            if(health <= 0)
+
+
+
+            if (horizontalInput != 0 || verticalInput != 0)
             {
-                alive = false;
+                isMoving = true;
+
+            }
+            else
+            {
+                isMoving = false;
             }
 
-
-
-        }else if(alive == false)
+        }
+        if (health <= 0)
         {
-
+            alive = false;
         }
 
 
-        if (horizontalInput != 0 || verticalInput != 0)
-        {
-            isMoving = true;
 
-        }
-        else
+        else if (alive == false)
         {
-            isMoving = false;
+            setKinematic(false);
+            anim.enabled = false;
         }
+
+
 
     }
+    //Change all child components as "new value" on rigidbody
+    void setKinematic(bool newValue)
+    {
 
+        //Get an array of components that are of type Rigidbody
+        Component[] components = GetComponentsInChildren(typeof(Rigidbody));
+
+        //For each of the components in the array, treat the component as a Rigidbody and set its isKinematic and detectCollisions property
+        foreach (Component c in components)
+        {
+            (c as Rigidbody).isKinematic = newValue;
+            (c as Rigidbody).detectCollisions = !newValue;
+        }
+
+        //Sets PLAYER rigid body as opposite
+        childRigid.isKinematic = !newValue;
+        childRigid.detectCollisions = newValue;
+
+    }
     //resetting jumps and makes player float on water
     private void OnCollisionEnter(Collision collision)
     {
