@@ -9,8 +9,12 @@ public class PickUp : MonoBehaviour
     public float bonusSpeed= 0;
     public AudioClip pickUpSound;
     private PlayerController playerController;
-    //private GameManager gameManager;
-  
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
     private void Update()
     {
@@ -44,7 +48,7 @@ public class PickUp : MonoBehaviour
             AudioSource.PlayClipAtPoint(pickUpSound, transform.position);
             Destroy(collision.gameObject);
             int effect = Random.Range(1, 3);
-            //gameManager.CollectedItems += 1;
+            gameManager.CollectedItems++;
 
             switch (effect)
             {
