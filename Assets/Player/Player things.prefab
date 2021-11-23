@@ -1395,7 +1395,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2978143433044328156}
   - component: {fileID: 7571373200889131603}
-  - component: {fileID: 7571373200889131600}
   m_Layer: 0
   m_Name: spine.005
   m_TagString: Untagged
@@ -1438,19 +1437,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &7571373200889131600
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072386375696608150}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.0017812354, y: -0.00072499015, z: 0.0017966722}
-  m_Center: {x: 0.0000000071013346, y: -0.00080142624, z: -0.00033826806}
 --- !u!1 &2185924686271064603
 GameObject:
   m_ObjectHideFlags: 0
@@ -6806,12 +6792,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e0175283040437990fd5a537bcd8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  childRigid: {fileID: 0}
+  speed: 0
   basicSpeed: 2.5
   sprintSpeed: 3.5
   jumpStrength: 350
   grounded: 0
   maxjumps: 0
   jumps: 0
+  isMoving: 0
   health: 100
   alive: 1
 --- !u!114 &7571373201289943756
