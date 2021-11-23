@@ -7,13 +7,16 @@ public class NextSceneLevel : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "prize")
+        if (collision.collider.tag == "SilverTrophy")
         {
-            SceneManager.LoadScene("Level2");
+            SceneManager.LoadScene("Gameworld-level 2");
+            Debug.Log("Load scene 2");
+            
         }       
-        else if (collision.collider.tag == "prize2")
+        else if (collision.collider.tag == "BronzeTrophy")
         {
-            SceneManager.LoadScene("Level3");
+            SceneManager.LoadScene("Gameworld-level 3");
+            Debug.Log("Load scene 3");
         }
     }
 }
