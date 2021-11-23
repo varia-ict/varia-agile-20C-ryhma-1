@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         SetInitialCollectedItems();
+       
 
         
     }
@@ -36,13 +37,14 @@ public class GameManager : MonoBehaviour
     }
 
     private void DisplayCollectedItems(int count)
-    {
+    { 
         CollectedItemsText.text = "Collected Items: " + count + " mushrooms"; 
     }
 
     public void GameOver()
     {
         GameOVerText.gameObject.SetActive(true);
+       
     }
 
     
