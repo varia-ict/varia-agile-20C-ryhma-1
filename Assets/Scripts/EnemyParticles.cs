@@ -11,7 +11,7 @@ public GameObject enemyPartObject;
 IEnumerator EnemyParticleTimer()
 {
   enemyPartObject.gameObject.SetActive(true);
-  yield return new WaitForSeconds(3);
+  yield return new WaitForSeconds(2);
   enemyPartObject.gameObject.SetActive(false);
 	parTriggered = false;
 }

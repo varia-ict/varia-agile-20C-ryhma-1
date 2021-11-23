@@ -12,6 +12,7 @@ TagManager:
   - SilverTrophy
   - Ground
   - BronzeTrophy
+  - Trophy
   layers:
   - Default
   - TransparentFX
