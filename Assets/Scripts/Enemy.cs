@@ -7,12 +7,16 @@ public class Enemy : MonoBehaviour
 {
     // Variables
     private Rigidbody enemyRb;
+<<<<<<< HEAD
     public Transform player;
 
     private float dist;
     public float moveSpeed;
     public float howclose;
 
+=======
+    public GameObject player;
+>>>>>>> 4c26bd9b32cf66aaa533d6d0fe4caf84d275b40e
 
     // Start is called before the first frame update
     void Start()
@@ -37,5 +41,9 @@ public class Enemy : MonoBehaviour
             // Do damage when close to player
         }
 
+<<<<<<< HEAD
+=======
+        enemyRb.AddForce(lookDirection * enemySpeed * Time.deltaTime);
+>>>>>>> 4c26bd9b32cf66aaa533d6d0fe4caf84d275b40e
     }
 }

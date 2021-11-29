@@ -5,6 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Mushroom
+  - Grass
+  - water
+  - Wood
+  - SilverTrophy
+  - Ground
+  - BronzeTrophy
+  - Trophy
   layers:
   - Default
   - TransparentFX
