@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -9,6 +10,14 @@ public class MainMenu : MonoBehaviour
     public GameObject easy;
     public GameObject medium;
     public GameObject hard;
+
+    
+
+
+    private void Start()
+    {
+        
+    }
 
 
     public void StartGame()
@@ -19,6 +28,7 @@ public class MainMenu : MonoBehaviour
     public void Options()
     {
         OptionsMenu.gameObject.SetActive(true);
+        
     }
 
 
@@ -30,6 +40,7 @@ public class MainMenu : MonoBehaviour
     public void BackButton()
     {
         OptionsMenu.gameObject.SetActive(false);
+
     }
 
 

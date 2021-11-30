@@ -2252,6 +2252,9 @@ MonoBehaviour:
   easy: {fileID: 1569218554}
   medium: {fileID: 250998846}
   hard: {fileID: 302223429}
+  start: {fileID: 1697485130}
+  options: {fileID: 1864096094}
+  quit: {fileID: 665672902}
 --- !u!82 &1355430516
 AudioSource:
   m_ObjectHideFlags: 0

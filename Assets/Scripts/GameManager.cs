@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI CollectedItemsText;
     public TextMeshProUGUI GameOVerText;
+    public TextMeshProUGUI scorePointsText;
+    public int score = 0;
     public int CollectedItems;
 
     private void Start()
@@ -20,6 +22,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         UpdateCollectedItems();
+        scorePointsText.text = "" + score;
     }
 
     // Start is called before the first frame update

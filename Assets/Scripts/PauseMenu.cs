@@ -6,7 +6,10 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     private bool isPaused = false;
+    private bool isShowingScore = false;
+    private bool isShowingStop = true;
     public GameObject pauseMenu;
+    public GameObject score;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +21,7 @@ public class PauseMenu : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && isShowingStop == true)
         {
             if (isPaused)
             {
@@ -29,6 +32,15 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape) && isShowingScore == true)
+        {
+            score.gameObject.SetActive(false);
+            isShowingScore = false;
+            pauseMenu.SetActive(true);
+            isShowingStop = true;
+        }
+
     }
 
 
@@ -45,6 +57,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+        isShowingStop = true;
 
     }
 
@@ -58,8 +71,12 @@ public class PauseMenu : MonoBehaviour
 
     public void ShowScore()
     {
-        Debug.Log("Showing score....");
-        //Score will be added later...
+        score.gameObject.SetActive(true);
+        isShowingScore = true;
+
+
+        isShowingStop = false;
+        pauseMenu.SetActive(false);
 
     }
 
