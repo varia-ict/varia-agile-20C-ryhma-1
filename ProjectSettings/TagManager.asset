@@ -9,10 +9,10 @@ TagManager:
   - Grass
   - water
   - Wood
-  - SilverTrophy
   - Ground
-  - BronzeTrophy
   - Trophy
+  - Hotdog
+  - Burger
   layers:
   - Default
   - TransparentFX
