@@ -2265,6 +2265,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7337351284764141111, guid: a4d4202347bfa481391cefec021d5fc7, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7571373200226577732, guid: a4d4202347bfa481391cefec021d5fc7, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: -0.00000003019379
