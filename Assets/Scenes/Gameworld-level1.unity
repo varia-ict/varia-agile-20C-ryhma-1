@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.42227417, g: 0.6437038, b: 0.7936718, a: 1}
+  m_IndirectSpecularColor: {r: 0.4222512, g: 0.64318293, b: 0.7937018, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5811,6 +5811,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2338515719929216820, guid: 39bdfaa11c97a034ca7c18adea385900, type: 3}
   m_PrefabInstance: {fileID: 3221615771961560983}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1772124112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772124111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a896235fd564aedb10cc3ca2ec33e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 773948306}
+  moveSpeed: 200
+  howclose: 10
 --- !u!65 &1772124113
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5824,6 +5839,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1772124114
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772124111}
+  serializedVersion: 2
+  m_Mass: 20
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1796281999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6908,6 +6939,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1663291926}
     m_Modifications:
+    - target: {fileID: -415139770012307798, guid: 325093dbcb6881c4db91d281759035a3, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 773948306}
+    - target: {fileID: -415139770012307798, guid: 325093dbcb6881c4db91d281759035a3, type: 3}
+      propertyPath: howclose
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -415139770012307798, guid: 325093dbcb6881c4db91d281759035a3, type: 3}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8105285743912566498, guid: 325093dbcb6881c4db91d281759035a3, type: 3}
       propertyPath: m_RootOrder
       value: 0
