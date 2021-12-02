@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public float health = 100;
     Animator anim;
     private PickUp pickup;
+    public GameObject GameOverText;
 
     public bool alive;
     // Start is called before the first frame update
@@ -31,6 +33,8 @@ public class PlayerController : MonoBehaviour
         footStep = FindObjectOfType<FootStepScript>();
         anim = GetComponent<Animator>();
         setKinematic(true);
+        GameOverText = GameObject.Find("GameOver");
+        GameOverText.gameObject.SetActive(false);
 
     }
 
@@ -102,11 +106,17 @@ public class PlayerController : MonoBehaviour
         {
             setKinematic(false);
             anim.enabled = false;
+
+        }
+    }
+    private IEnumerator gameOver() {
+        while (alive == false)
+        {
+            yield return new WaitForSeconds(2);
+            gameOver();
         }
 
-
-
-    }
+    } 
     //Change all child components as "new value" on rigidbody
     void setKinematic(bool newValue)
     {
@@ -136,5 +146,9 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.AddForce(Vector3.up * 1000, ForceMode.Force);
         }
+    }
+    public void GameOver()
+    {
+        GameOverText.gameObject.SetActive(true);
     }
 }
