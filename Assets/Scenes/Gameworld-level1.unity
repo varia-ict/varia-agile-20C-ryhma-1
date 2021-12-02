@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4222512, g: 0.64318293, b: 0.7937018, a: 1}
+  m_IndirectSpecularColor: {r: 0.42227417, g: 0.6437038, b: 0.7936718, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -504,7 +504,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollectedItemsText: {fileID: 55227426}
-  GameOVerText: {fileID: 0}
   CollectedItems: 0
 --- !u!4 &82231315
 Transform:
@@ -751,6 +750,7 @@ RectTransform:
   m_Children:
   - {fileID: 55227425}
   - {fileID: 235882106}
+  - {fileID: 1133489312}
   - {fileID: 729040241}
   - {fileID: 797073623}
   m_Father: {fileID: 0}
@@ -1815,7 +1815,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 40
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
@@ -1825,7 +1825,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Game Over
+  m_Text: GameOver
 --- !u!222 &556859747
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1899,7 +1899,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 40
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 40
@@ -1909,7 +1909,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You Win!
+  m_Text: YouWin!
 --- !u!222 &586502958
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2441,7 +2441,7 @@ GameObject:
   - component: {fileID: 729040243}
   - component: {fileID: 729040242}
   m_Layer: 5
-  m_Name: Win Text
+  m_Name: 'Win '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2460,7 +2460,7 @@ RectTransform:
   m_Children:
   - {fileID: 586502956}
   m_Father: {fileID: 149371858}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2967,7 +2967,7 @@ GameObject:
   - component: {fileID: 797073625}
   - component: {fileID: 797073624}
   m_Layer: 5
-  m_Name: Game Over
+  m_Name: GameOver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2986,7 +2986,7 @@ RectTransform:
   m_Children:
   - {fileID: 556859745}
   m_Father: {fileID: 149371858}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3496,7 +3496,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 40
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
@@ -5723,6 +5723,10 @@ PrefabInstance:
     - target: {fileID: 1810668958750813698, guid: b47557280fdf34db6a305782d0839a89, type: 3}
       propertyPath: m_Name
       value: Pause
+      objectReference: {fileID: 0}
+    - target: {fileID: 1810668958750813698, guid: b47557280fdf34db6a305782d0839a89, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1810668958750813757, guid: b47557280fdf34db6a305782d0839a89, type: 3}
       propertyPath: m_RootOrder

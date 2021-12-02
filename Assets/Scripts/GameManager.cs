@@ -7,7 +7,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI CollectedItemsText;
-    public TextMeshProUGUI GameOVerText;
+   
     public int CollectedItems;
 
     private void Start()
@@ -41,11 +41,7 @@ public class GameManager : MonoBehaviour
         CollectedItemsText.text = "Collected Items: " + count + " mushrooms"; 
     }
 
-    public void GameOver()
-    {
-        GameOVerText.gameObject.SetActive(true);
-       
-    }
+   
 
     
 }
