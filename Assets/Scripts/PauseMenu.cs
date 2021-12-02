@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     private bool isShowingScore = false;
     private bool isShowingStop = true;
     public GameObject pauseMenu;
+    public Button button;
     public GameObject score;
 
     // Start is called before the first frame update
@@ -49,6 +51,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+        button.Select();
     }
 
     public void Pause()
