@@ -60,7 +60,7 @@ public class PickUp : MonoBehaviour
                     break;
                 case 2:
                     //Extra life :)
-                    //playerController.health +=50;
+                    playerController.health +=5;
                     break;
 
                 case 3:

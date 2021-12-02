@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
     public GameObject OptionsMenu;
+    public GameObject Menu;
+    public EventSystem EventSystem;
     public GameObject easy;
+    public Button selectedButton;
     public GameObject medium;
     public GameObject hard;
 
@@ -29,6 +33,7 @@ public class MainMenu : MonoBehaviour
     {
         OptionsMenu.gameObject.SetActive(true);
         
+        
     }
 
 
@@ -40,6 +45,7 @@ public class MainMenu : MonoBehaviour
     public void BackButton()
     {
         OptionsMenu.gameObject.SetActive(false);
+        selectedButton.Select();
 
     }
 
