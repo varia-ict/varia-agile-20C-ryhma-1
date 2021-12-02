@@ -13,6 +13,8 @@ TagManager:
   - Ground
   - BronzeTrophy
   - Trophy
+  - Hotdog
+  - Burger
   layers:
   - Default
   - TransparentFX
