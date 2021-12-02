@@ -7,14 +7,13 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI CollectedItemsText;
-    public TextMeshProUGUI GameOVerText;
-    public TextMeshProUGUI scorePointsText;
-    public int score = 0;
+   
     public int CollectedItems;
 
     private void Start()
     {
         SetInitialCollectedItems();
+       
 
         
     }
@@ -22,7 +21,6 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         UpdateCollectedItems();
-        scorePointsText.text = "" + score;
     }
 
     // Start is called before the first frame update
@@ -39,14 +37,11 @@ public class GameManager : MonoBehaviour
     }
 
     private void DisplayCollectedItems(int count)
-    {
+    { 
         CollectedItemsText.text = "Collected Items: " + count + " mushrooms"; 
     }
 
-    public void GameOver()
-    {
-        GameOVerText.gameObject.SetActive(true);
-    }
+   
 
     
 }
