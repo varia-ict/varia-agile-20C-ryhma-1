@@ -9,20 +9,18 @@ public class Enemy : MonoBehaviour
     public Rigidbody enemyRb;
     public Transform player;
     public Enemy enemy;
+    private Animator animator;
 
     private float dist;
     public float moveSpeed;
     public float howclose;
     public float hit;
     public int damage;
-    public int enemyHealth;
-    public bool isAlive;
-
 
     // Start is called before the first frame update
     public void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -33,6 +31,7 @@ public class Enemy : MonoBehaviour
 
         if (dist <= howclose)
         {
+            animator.Play("Battleidle");
             transform.LookAt(player);
             GetComponent<Rigidbody>().AddForce(transform.forward * moveSpeed);
         }
@@ -40,25 +39,22 @@ public class Enemy : MonoBehaviour
         if (dist <= 1.5f)
         {
             // Do damage when close to player
-            
+
         }
 
     }
 
-    public bool IsDead()
+    IEnumerator AnimState()
     {
-        if (enemyHealth != 0)
-        {
-            isAlive = true;
-        }
-
-
-        if (enemyHealth <= 0)
-        {
-            isAlive = false;
-        }
-
-        return false;
+        Attack();
+        yield return new WaitForSeconds(2);
     }
 
+    void Attack()
+    {
+        if (dist <= 1.5f)
+        {
+            animator.Play("Attack1");
+        }
+    }
 }
