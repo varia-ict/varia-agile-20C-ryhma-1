@@ -43,18 +43,4 @@ public class Enemy : MonoBehaviour
         }
 
     }
-
-    IEnumerator AnimState()
-    {
-        Attack();
-        yield return new WaitForSeconds(2);
-    }
-
-    void Attack()
-    {
-        if (dist <= 1.5f)
-        {
-            animator.Play("Attack1");
-        }
-    }
 }
