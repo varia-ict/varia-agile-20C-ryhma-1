@@ -7,7 +7,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI CollectedItemsText;
-    //public TextMeshProUGUI scorePointsText;
+    public TextMeshProUGUI scorePointsText;
     public int score;
     public int CollectedItems;
 
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        //scorePointsText.text = "" + score;
+        scorePointsText.text = "" + score;
         UpdateCollectedItems();
     }
 
