@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PickUp : MonoBehaviour
 {
     private float timerStart = 0;
     private float timerStartJump = 0;
+    private float time;
     public float bonusSpeed= 0;
     public AudioClip pickUpSound;
     private PlayerController playerController;
     private GameManager gameManager;
+
+    public TextMeshProUGUI effect1;
+    public TextMeshProUGUI effect2;
+
+    
 
     private void Start()
     {
@@ -30,13 +37,17 @@ public class PickUp : MonoBehaviour
         {
             bonusSpeed = 1;
             timerStart -= Time.deltaTime;
-        }else if (timerStart > 0)
+            effect1.text = "*Effect: " + (int)timerStart + "s Extra Speed.";
+        }
+        else if (timerStart > 0)
         {
             timerStart -= Time.deltaTime;
             bonusSpeed = -2f;
-        }else if (timerStart <= 0)
+            effect1.text = "*Effect: " + (int)timerStart + "s Less Speed.";
+        }
+        else if (timerStart <= 0)
         {
-  
+            effect1.text = "";
             timerStart = 0;
             bonusSpeed = 0;
         }
@@ -49,16 +60,20 @@ public class PickUp : MonoBehaviour
         {
             playerController.jumpStrength = 450;
             timerStartJump -= Time.deltaTime;
+            effect2.text = "*Effect: " + (int)timerStartJump + "s Extra Jump.";
         }
         else if (timerStartJump > 0)
         {
             timerStartJump -= Time.deltaTime;
             playerController.jumpStrength = 0;
+            effect2.text = "*Effect: " + (int)timerStartJump + "s No Jump.";
         }
         else if (timerStart <= 0)
         {
             timerStartJump = 0;
             playerController.jumpStrength = 350;
+            effect2.text = "";
+
         }
     }
 

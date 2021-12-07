@@ -10,9 +10,13 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scorePointsText;
     public int score;
     public int CollectedItems;
-
+    public GameObject PickUpScore;
+    public GameObject challenge;
+    private bool endBool;
     private void Start()
     {
+        CollectedItems = 00;
+        endBool = true;
         SetInitialCollectedItems();
        
 
@@ -23,12 +27,22 @@ public class GameManager : MonoBehaviour
     {
         scorePointsText.text = "" + score;
         UpdateCollectedItems();
+        if(endBool == true && CollectedItems < 10)
+        {
+            PickUpScore.SetActive(true);
+            challenge.SetActive(false);
+        }else if(endBool == true && CollectedItems == 10)
+        {
+            PickUpScore.SetActive(false);
+            challenge.SetActive(true);
+            endBool = false;
+            
+        }
     }
 
     // Start is called before the first frame update
     public void SetInitialCollectedItems()
     {
-        CollectedItems = 0;
         DisplayCollectedItems(CollectedItems);
     }
 
@@ -40,7 +54,14 @@ public class GameManager : MonoBehaviour
 
     private void DisplayCollectedItems(int count)
     { 
-        CollectedItemsText.text = "Collected Items: " + count + " mushrooms"; 
+        if(count < 10)
+        {
+            CollectedItemsText.text = "0" + count + "/10";
+        }else if (count >= 10)
+        {
+            CollectedItemsText.text = count + "/10";
+        }
+        
     }
 
    

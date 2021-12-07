@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -12,11 +13,16 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenu;
     public Button button;
     public GameObject score;
+    public GameObject PickUpScore;
+    public GameObject challenge;
+    private GameManager gameManager;
+    public GameObject effect1;
+    public GameObject effect2;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -48,6 +54,17 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        if(gameManager.CollectedItems < 10)
+        {
+            PickUpScore.SetActive(true);
+        } else
+        {
+            challenge.SetActive(true);
+            PickUpScore.SetActive(false);
+        }
+
+        effect1.SetActive(true);
+        effect2.SetActive(true);
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
@@ -56,7 +73,10 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-
+        effect1.SetActive(false);
+        effect2.SetActive(false);
+        PickUpScore.SetActive(false);
+        challenge.SetActive(false);
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
