@@ -26,12 +26,13 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-
+        animator.SetBool("idle", true);
         dist = Vector3.Distance(player.position, transform.position);
 
         if (dist <= howclose)
         {
-            animator.Play("Battleidle");
+            animator.SetBool("idle", false);
+            animator.SetBool("BattleIdle", true);
             transform.LookAt(player);
             GetComponent<Rigidbody>().AddForce(transform.forward * moveSpeed);
         }
@@ -39,8 +40,7 @@ public class Enemy : MonoBehaviour
         if (dist <= 1.5f)
         {
             // Do damage when close to player
-
+            
         }
-
     }
 }
