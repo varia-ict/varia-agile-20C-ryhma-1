@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
         {
             animator.SetBool("idle", false);
             animator.SetBool("BattleIdle", true);
+            animator.SetBool("Flying", true);
             transform.LookAt(player);
             GetComponent<Rigidbody>().AddForce(transform.forward * moveSpeed);
         }
@@ -40,7 +41,18 @@ public class Enemy : MonoBehaviour
         if (dist <= 1.5f)
         {
             // Do damage when close to player
-            
+            GetComponent<Animator>().SetTrigger("Attack1");
         }
+
+        if (dist >= howclose)
+        {
+            animator.SetBool("Flying", false);
+            animator.SetBool("BattleIdle", false);
+        }
+    }
+
+    public void Attack()
+    {
+
     }
 }

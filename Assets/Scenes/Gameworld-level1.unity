@@ -6052,7 +6052,7 @@ MonoBehaviour:
   enemyRb: {fileID: 1772124114}
   player: {fileID: 773948306}
   enemy: {fileID: 1772124112}
-  moveSpeed: 200
+  moveSpeed: 160
   howclose: 10
   hit: 0
   damage: 5
