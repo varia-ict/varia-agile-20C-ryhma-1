@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
@@ -13,8 +14,17 @@ public class GameManager : MonoBehaviour
     public GameObject PickUpScore;
     public GameObject challenge;
     private bool endBool;
+    public string sceneName;
+
+
+
     private void Start()
     {
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        sceneName = currentScene.name;
+
+
         CollectedItems = 00;
         endBool = true;
         SetInitialCollectedItems();

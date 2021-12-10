@@ -6,15 +6,12 @@ using TMPro;
 public class PickUp : MonoBehaviour
 {
     private float timerStart = 0;
-    private float timerStartJump = 0;
-    private float time;
     public float bonusSpeed= 0;
     public AudioClip pickUpSound;
     private PlayerController playerController;
     private GameManager gameManager;
 
     public TextMeshProUGUI effect1;
-    public TextMeshProUGUI effect2;
 
     
 
@@ -27,7 +24,6 @@ public class PickUp : MonoBehaviour
     private void Update()
     {
         SpeedEffectTimer();
-        JumpTimer();
     }
 
     //How long the speed effect lasts.
@@ -54,29 +50,6 @@ public class PickUp : MonoBehaviour
     }
 
 
-    void JumpTimer()
-    {
-        if (timerStartJump > 5)
-        {
-            playerController.jumpStrength = 450;
-            timerStartJump -= Time.deltaTime;
-            effect2.text = "*Effect: " + (int)timerStartJump + "s Extra Jump.";
-        }
-        else if (timerStartJump > 0)
-        {
-            timerStartJump -= Time.deltaTime;
-            playerController.jumpStrength = 0;
-            effect2.text = "*Effect: " + (int)timerStartJump + "s No Jump.";
-        }
-        else if (timerStart <= 0)
-        {
-            timerStartJump = 0;
-            playerController.jumpStrength = 350;
-            effect2.text = "";
-
-        }
-    }
-
     // Random bonus when player collides with PickUps (Positive or negative bonus).
     private void OnCollisionEnter(Collision collision)
     {
@@ -102,11 +75,6 @@ public class PickUp : MonoBehaviour
                     gameManager.score -= 1;
                     break;
 
-                case 3:
-                    //Adding jump strenght to player after that, less jump.
-                    Debug.Log("Extra Jump");
-                    timerStartJump = 15;
-                    break;
             }
         }
     }

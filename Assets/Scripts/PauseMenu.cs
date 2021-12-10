@@ -9,9 +9,13 @@ public class PauseMenu : MonoBehaviour
 {
     private bool isPaused = false;
     private bool isShowingScore = false;
+    private bool isShowingRestart = false;
     private bool isShowingStop = true;
     public GameObject pauseMenu;
+    public GameObject restart;
     public Button button;
+    public Button button2;
+    public Button button3;
     public GameObject score;
     public GameObject PickUpScore;
     public GameObject challenge;
@@ -49,12 +53,24 @@ public class PauseMenu : MonoBehaviour
             isShowingStop = true;
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape) && isShowingRestart == true)
+        {
+            restart.gameObject.SetActive(false);
+            isShowingRestart = false;
+            pauseMenu.SetActive(true);
+            isShowingStop = true;
+        }
+
+
+
     }
 
 
     public void Resume()
     {
-        if(gameManager.CollectedItems < 10)
+        Cursor.lockState = CursorLockMode.Locked;
+
+        if (gameManager.CollectedItems < 10)
         {
             PickUpScore.SetActive(true);
         } else
@@ -77,10 +93,12 @@ public class PauseMenu : MonoBehaviour
         effect2.SetActive(false);
         PickUpScore.SetActive(false);
         challenge.SetActive(false);
+        restart.gameObject.SetActive(false);
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
         isShowingStop = true;
+        Cursor.lockState = CursorLockMode.None;
 
     }
 
@@ -96,7 +114,7 @@ public class PauseMenu : MonoBehaviour
     {
         score.gameObject.SetActive(true);
         isShowingScore = true;
-
+        button3.Select();
 
         isShowingStop = false;
         pauseMenu.SetActive(false);
@@ -105,8 +123,57 @@ public class PauseMenu : MonoBehaviour
 
 
 
+   public void Restart()
+    {
+        restart.gameObject.SetActive(true);
+        pauseMenu.gameObject.SetActive(false);
+        isShowingRestart = true;
+        isShowingStop = false;
+        button2.Select();
+    }
 
 
+
+    public void Back() {
+
+        restart.gameObject.SetActive(false);
+        pauseMenu.gameObject.SetActive(true);
+        isShowingRestart= false;
+        isShowingStop = true;
+        button.Select();
+    }
+
+
+    public void Back2() {
+        score.gameObject.SetActive(false);
+        pauseMenu.gameObject.SetActive(true);
+        isShowingScore = false;
+        isShowingStop = true;
+        button.Select();
+    }
+
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Gameworld-level1");
+    }
+
+    public void RestartLevel()
+    {
+        if (gameManager.sceneName == "Gameworld-level1")
+        {
+            SceneManager.LoadScene("Gameworld-level1");
+        }
+        else if (gameManager.sceneName == "Gameworld-level2")
+        {
+            SceneManager.LoadScene("Gameworld-level2");
+        }
+        else if (gameManager.sceneName == "Gameworld-level3")
+        {
+            SceneManager.LoadScene("Gameworld-level3");
+        }
+
+    }
 
 
 }
