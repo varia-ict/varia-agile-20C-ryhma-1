@@ -17,7 +17,7 @@ public class NextSceneLevel : MonoBehaviour
         {
             SceneManager.LoadScene(1);   
         }       
-        else if (other.tag == "Burger")
+        else if (other.tag == "Burger" && gameManager.CollectedItems >= 10)
         {
             SceneManager.LoadScene(2);
         }
