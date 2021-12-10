@@ -10,12 +10,11 @@ public class MouseLook : MonoBehaviour
     public float sensitivityHorizontal = 100f;
     public GameObject Player;
     public PlayerController playerControllerobject;
-    public GameObject camera;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        camera = GameObject.Find("Camera");
     Cursor.lockState = CursorLockMode.Locked;
     }
 

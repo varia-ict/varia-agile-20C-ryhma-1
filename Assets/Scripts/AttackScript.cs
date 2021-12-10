@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AttackScript : MonoBehaviour
 {
+    public Animator anim;
     public int hitRange = 10;
     public bool CD = false;
     private IEnumerator Coroutine;
@@ -19,7 +20,13 @@ public class AttackScript : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Attack();
+            anim.SetBool("attack", true);
         }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            anim.SetBool("attack", false);
+        }
+        
     }
     void Attack()
     {
@@ -31,6 +38,7 @@ public class AttackScript : MonoBehaviour
         {
             if (hit.transform.gameObject.tag == "Enemy" && CD == false)
             {
+                
                 hit.transform.gameObject.SendMessage("TakeDamage", 30);
                 Vector3 orward = transform.TransformDirection(Vector3.forward) * 10;
                 CD = true;
@@ -42,7 +50,8 @@ public class AttackScript : MonoBehaviour
     }
     private IEnumerator CoolDown()
     {
-            yield return new WaitForSeconds(1);
+        
+        yield return new WaitForSeconds(1);
             CD = false;
     }
 

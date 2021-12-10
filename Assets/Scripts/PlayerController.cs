@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-        #region variables
-
-    private Rigidbody playerRb;
+    #region variables
+    [Header("Game Objects")]
+    public Rigidbody playerRb;
     private FootStepScript footStep;
     public GameObject GameOverScreen;
     private IEnumerator deathcounter;
@@ -32,13 +32,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("Health")]
     public float health = 100;
+    private float maxHealth = 100;
     public bool alive;
             #endregion
 
         #region activate and set gameobjects
     void Start()
     {
-        playerRb = gameObject.GetComponent<Rigidbody>();
         pickup = gameObject.GetComponent<PickUp>();
         footStep = FindObjectOfType<FootStepScript>();
         anim = GetComponent<Animator>();
@@ -52,9 +52,12 @@ public class PlayerController : MonoBehaviour
 
         if (alive)
         {
+            if(health > maxHealth)
+            {
+                health = maxHealth;
+            }
             //movement plus sprint speed script
             verticalInput = Input.GetAxis("Vertical");
-            verticalanimationInput = Input.GetAxis("Vertical");
             horizontalInput = Input.GetAxis("Horizontal");
 
             
@@ -70,10 +73,17 @@ public class PlayerController : MonoBehaviour
 
             //basic movement
             transform.Translate(Vector3.forward * speed * Time.deltaTime * verticalInput);
+            if(verticalInput > 0)
+            {
+                anim.SetBool("run", true);
+            }
+            else
+            {
+                anim.SetBool("run", false);
+            }
 
             //making so that moving sideways is not possible while airborne
-            if (jumps == 0) { transform.Translate(Vector3.right * speed * Time.deltaTime * horizontalInput); }
-            anim.SetFloat("Speed", verticalanimationInput);
+            transform.Translate(Vector3.right * speed * Time.deltaTime * horizontalInput);
 
 
 
