@@ -30,7 +30,7 @@ private void Start ()
 }
 
 // Update is called once per frame
-void Update () 
+void FixedUpdate () 
 {
 	if(parTriggered == true)
   {
