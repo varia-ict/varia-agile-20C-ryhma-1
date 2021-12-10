@@ -106,14 +106,14 @@ public class PlayerController : MonoBehaviour
         {
             setKinematic(false);
             anim.enabled = false;
-
+            gameOvertime();
         }
     }
-    private IEnumerator gameOver() {
+    private IEnumerator gameOvertime() {
         while (alive == false)
         {
             yield return new WaitForSeconds(2);
-            gameOver();
+            GameOver();
         }
 
     } 
