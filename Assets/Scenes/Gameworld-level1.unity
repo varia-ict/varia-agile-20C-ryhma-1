@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4222512, g: 0.64318293, b: 0.7937018, a: 1}
+  m_IndirectSpecularColor: {r: 0.42227417, g: 0.6437038, b: 0.7936718, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6052,10 +6052,13 @@ MonoBehaviour:
   enemyRb: {fileID: 1772124114}
   player: {fileID: 773948306}
   enemy: {fileID: 1772124112}
-  moveSpeed: 160
+  animator: {fileID: 0}
+  moveSpeed: 90
   howclose: 10
   hit: 0
-  damage: 5
+  attackCooldown: 1
+  timeBetweenAttacks: 1
+  damage: 0
 --- !u!65 &1772124113
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6097,10 +6100,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8001b485b8a2094caa46f112a3c3a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  enemyHealth: 100
   maxHealth: 100
   healthBarUI: {fileID: 557464340}
   slider: {fileID: 533473690}
+  enemy: {fileID: 1772124112}
+  animator: {fileID: 3221615771961560984}
 --- !u!1001 &1796281999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7235,6 +7240,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39bdfaa11c97a034ca7c18adea385900, type: 3}
+--- !u!95 &3221615771961560984 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3221615772005494996, guid: 39bdfaa11c97a034ca7c18adea385900, type: 3}
+  m_PrefabInstance: {fileID: 3221615771961560983}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7096884061496558523 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5676866538946350124, guid: 39bdfaa11c97a034ca7c18adea385900, type: 3}

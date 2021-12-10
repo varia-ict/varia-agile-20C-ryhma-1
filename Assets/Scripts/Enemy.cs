@@ -5,17 +5,20 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    // Variables
+    // References
     public Rigidbody enemyRb;
     public Transform player;
     public Enemy enemy;
-    private Animator animator;
+    public Animator animator;
 
+    // Variables
     private float dist;
     public float moveSpeed;
     public float howclose;
     public float hit;
-    public int damage;
+    public float attackCooldown;
+    public float timeBetweenAttacks = 1;
+    public float damage;
 
     // Start is called before the first frame update
     public void Start()
@@ -26,6 +29,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+
         animator.SetBool("idle", true);
         dist = Vector3.Distance(player.position, transform.position);
 
@@ -38,21 +42,32 @@ public class Enemy : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(transform.forward * moveSpeed);
         }
 
+        if (dist >= howclose)
+        {
+            animator.SetBool("Flying", false);
+            animator.SetBool("BattleIdle", false);
+        }
+
         if (dist <= 1.5f)
         {
             // Do damage when close to player
             GetComponent<Animator>().SetTrigger("Attack1");
         }
 
-        if (dist >= howclose)
+        if (timeBetweenAttacks > 0)
         {
-            animator.SetBool("Flying", false);
-            animator.SetBool("BattleIdle", false);
+            attackCooldown -= Time.deltaTime;
+        }
+        else if (timeBetweenAttacks <= 0)
+        {
+            Attack();
+            timeBetweenAttacks = attackCooldown;
         }
     }
 
     public void Attack()
     {
-
+        
     }
+
 }
