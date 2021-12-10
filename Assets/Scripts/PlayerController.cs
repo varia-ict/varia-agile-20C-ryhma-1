@@ -4,39 +4,52 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+        #region variables
+
     private Rigidbody playerRb;
-    public Rigidbody childRigid;
     private FootStepScript footStep;
+    public GameObject GameOverScreen;
+    private IEnumerator deathcounter;
+
+    [Header("Movement speed related")]
     public float speed;
     public float basicSpeed = 3;
     public float sprintSpeed = 5;
     private float horizontalInput;
     private float verticalInput;
     private float verticalanimationInput;
+
+    [Header("Jump related")]
     public float jumpStrength = 350;
-    public bool grounded;
     public int maxjumps;
     public int jumps;
+
+    [Header("Booleans")]
+    public bool grounded;
     public bool isMoving;
-    public float health = 100;
     Animator anim;
     private PickUp pickup;
 
+    [Header("Health")]
+    public float health = 100;
     public bool alive;
-    // Start is called before the first frame update
+            #endregion
+
+        #region activate and set gameobjects
     void Start()
     {
-        playerRb = gameObject.GetComponent<Rigidbody>(); //activating rigidbody on player
+        playerRb = gameObject.GetComponent<Rigidbody>();
         pickup = gameObject.GetComponent<PickUp>();
         footStep = FindObjectOfType<FootStepScript>();
         anim = GetComponent<Animator>();
         setKinematic(true);
-
     }
+        #endregion
 
-
+        #region Movement
     void Update()
     {
+
         if (alive)
         {
             //movement plus sprint speed script
@@ -44,7 +57,9 @@ public class PlayerController : MonoBehaviour
             verticalanimationInput = Input.GetAxis("Vertical");
             horizontalInput = Input.GetAxis("Horizontal");
 
-            if (Input.GetKey(KeyCode.L))
+            
+
+            if (Input.GetKey(KeyCode.Delete))
             { alive = false; }
 
             if (Input.GetKey(KeyCode.LeftShift))
@@ -55,6 +70,7 @@ public class PlayerController : MonoBehaviour
 
             //basic movement
             transform.Translate(Vector3.forward * speed * Time.deltaTime * verticalInput);
+
             //making so that moving sideways is not possible while airborne
             if (jumps == 0) { transform.Translate(Vector3.right * speed * Time.deltaTime * horizontalInput); }
             anim.SetFloat("Speed", verticalanimationInput);
@@ -65,21 +81,8 @@ public class PlayerController : MonoBehaviour
             //jump with maxjump increase possible, and ground check boolean
             if (Input.GetKeyDown(KeyCode.Space) && grounded)
             {
-                playerRb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
-                jumps++;
-                footStep.inGrass = false;
-                footStep.inWater = false;
-                footStep.inWood = false;
-                if (jumps == maxjumps)
-                {
-                    grounded = false;
-                    footStep.inGrass = false;
-                    footStep.inWater = false;
-                    footStep.inWood = false;
-                }
+                jump();
             }
-
-
 
             if (horizontalInput != 0 || verticalInput != 0)
             {
@@ -90,24 +93,34 @@ public class PlayerController : MonoBehaviour
             {
                 isMoving = false;
             }
-
         }
+    #region death related       
         if (health <= 0)
         {
             alive = false;
         }
+        
 
 
-
-        else if (alive == false)
+        if (alive == false)
         {
             setKinematic(false);
             anim.enabled = false;
+            deathcounter = Death();
+            StartCoroutine(deathcounter);
         }
 
 
-
+        #endregion
     }
+    IEnumerator Death()
+    {
+        yield return new WaitForSeconds(2);
+        GameOverScreen.SetActive(true);
+    }
+        #endregion
+
+        #region rigidbody modifiers for ragdoll effect
     //Change all child components as "new value" on rigidbody
     void setKinematic(bool newValue)
     {
@@ -123,19 +136,44 @@ public class PlayerController : MonoBehaviour
         }
 
         //Sets PLAYER rigid body as opposite
-        childRigid.isKinematic = !newValue;
-        childRigid.detectCollisions = newValue;
+        playerRb.isKinematic = !newValue;
+        playerRb.detectCollisions = newValue;
 
     }
-    //resetting jumps and makes player float on water
+        #endregion
+
+        #region jump
+    /*
+    this region contains jump and collision that resets jumps. 
+    */
+    private void jump()
+    {
+        playerRb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
+        jumps++;
+        footStep.inGrass = false;
+        footStep.inWater = false;
+        footStep.inWood = false;
+        if (jumps == maxjumps)
+        {
+            grounded = false;
+            footStep.inGrass = false;
+            footStep.inWater = false;
+            footStep.inWood = false;
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
         jumps = 0;
         grounded = true;
-
+        //---------------------------
+        //this is what stops char from falling trough floor from jumps
+        playerRb.velocity = Vector3.zero;
+        playerRb.angularVelocity = Vector3.zero;
+        //----------------
         if (collision.collider.tag == "water")
         {
             playerRb.AddForce(Vector3.up * 1000, ForceMode.Force);
         }
     }
+        #endregion
 }
