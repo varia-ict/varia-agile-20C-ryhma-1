@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class NextSceneLevel : MonoBehaviour
 {
     private GameManager gameManager;
+    private bool winTriggered;
+    public GameObject winObject;
 
     private void Start()
     {
@@ -19,7 +21,19 @@ public class NextSceneLevel : MonoBehaviour
         }       
         else if (other.tag == "Burger" && gameManager.CollectedItems >= 10)
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
+        }
+        else if (other.tag == "Steak" && gameManager.CollectedItems >= 5)
+        {
+            winTriggered = true;
         }
     }
+
+    void FixedUpdate()
+    {
+        if (winTriggered == true)
+        {
+            winObject.gameObject.SetActive(true); 
+        }
+}
 }

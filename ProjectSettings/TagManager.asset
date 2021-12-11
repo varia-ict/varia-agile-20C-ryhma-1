@@ -15,6 +15,7 @@ TagManager:
   - Trophy
   - Hotdog
   - Burger
+  - Steak
   layers:
   - Default
   - TransparentFX
