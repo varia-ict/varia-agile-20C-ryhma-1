@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.42227417, g: 0.6437038, b: 0.7936718, a: 1}
+  m_IndirectSpecularColor: {r: 0.4222512, g: 0.64318293, b: 0.7937018, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2687,7 +2687,7 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 744085194}
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Mass: 1
   m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
@@ -6052,8 +6052,8 @@ MonoBehaviour:
   enemyRb: {fileID: 1772124114}
   player: {fileID: 773948306}
   enemy: {fileID: 1772124112}
-  animator: {fileID: 0}
-  moveSpeed: 90
+  animator: {fileID: 3221615771961560984}
+  moveSpeed: 150
   howclose: 10
   hit: 0
   attackCooldown: 1

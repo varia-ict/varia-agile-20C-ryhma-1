@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
     private float dist;
     public float moveSpeed;
     public float howclose;
-    public float hit;
     public float attackCooldown;
     public float timeBetweenAttacks = 1;
     public float damage;
