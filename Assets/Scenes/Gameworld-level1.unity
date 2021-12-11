@@ -6054,11 +6054,10 @@ MonoBehaviour:
   enemy: {fileID: 1772124112}
   animator: {fileID: 3221615771961560984}
   moveSpeed: 150
-  howclose: 10
-  hit: 0
+  howclose: 12
   attackCooldown: 1
   timeBetweenAttacks: 1
-  damage: 0
+  damage: 10
 --- !u!65 &1772124113
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7200,7 +7199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3116423892847846798, guid: 39bdfaa11c97a034ca7c18adea385900, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 53.013
+      value: 53.0129
       objectReference: {fileID: 0}
     - target: {fileID: 3116423892847846798, guid: 39bdfaa11c97a034ca7c18adea385900, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7208,7 +7207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3116423892847846798, guid: 39bdfaa11c97a034ca7c18adea385900, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.475
+      value: -6.4558
       objectReference: {fileID: 0}
     - target: {fileID: 3116423892847846798, guid: 39bdfaa11c97a034ca7c18adea385900, type: 3}
       propertyPath: m_LocalRotation.w
