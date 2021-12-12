@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public int CollectedItems;
     public GameObject PickUpScore;
     public GameObject challenge;
-    private bool endBool;
+    public bool endBool;
     public string sceneName;
 
 
@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
 
         sceneName = currentScene.name;
-
 
         CollectedItems = 00;
         endBool = true;
@@ -37,11 +36,12 @@ public class GameManager : MonoBehaviour
     {
         scorePointsText.text = "" + score;
         UpdateCollectedItems();
+
         if(endBool == true && CollectedItems < 10)
         {
             PickUpScore.SetActive(true);
             challenge.SetActive(false);
-        }else if(endBool == true && CollectedItems == 10)
+        }else if(endBool == true && CollectedItems >= 10)
         {
             PickUpScore.SetActive(false);
             challenge.SetActive(true);

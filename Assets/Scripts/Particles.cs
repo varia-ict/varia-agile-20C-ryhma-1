@@ -16,7 +16,7 @@ IEnumerator ParticleTimer()
 	parTriggered = false;
 }
 
-void OnTriggerEnter(Collider col)
+void OnCollisionEnter(Collision col)
 {
    if(col.gameObject.tag == "Mushroom")
 	{

@@ -58,7 +58,7 @@ public class PickUp : MonoBehaviour
             AudioSource.PlayClipAtPoint(pickUpSound, transform.position);
             Destroy(collision.gameObject);
             gameManager.score += 5;
-            int effect = Random.Range(1, 4);
+            int effect = Random.Range(1, 3);
             gameManager.CollectedItems++;
 
             switch (effect)

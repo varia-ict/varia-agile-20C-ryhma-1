@@ -51,6 +51,7 @@ public class PauseMenu : MonoBehaviour
             isShowingScore = false;
             pauseMenu.SetActive(true);
             isShowingStop = true;
+            button.Select();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && isShowingRestart == true)
@@ -59,6 +60,7 @@ public class PauseMenu : MonoBehaviour
             isShowingRestart = false;
             pauseMenu.SetActive(true);
             isShowingStop = true;
+            button.Select();
         }
 
 
@@ -72,50 +74,41 @@ public class PauseMenu : MonoBehaviour
 
         if (gameManager.CollectedItems < 10)
         {
-            PickUpScore.SetActive(true);
+            PickUpScore.gameObject.SetActive(true);
         } else
         {
-            challenge.SetActive(true);
-            PickUpScore.SetActive(false);
+            challenge.gameObject.SetActive(true);
+            PickUpScore.gameObject.SetActive(false);
         }
 
         effect1.SetActive(true);
-        effect2.SetActive(true);
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
         button.Select();
+        gameManager.endBool = true;
     }
 
     public void Pause()
     {
         effect1.SetActive(false);
-        effect2.SetActive(false);
-        PickUpScore.SetActive(false);
-        challenge.SetActive(false);
+        PickUpScore.gameObject.SetActive(false);
+        challenge.gameObject.SetActive(false);
         restart.gameObject.SetActive(false);
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
         isShowingStop = true;
         Cursor.lockState = CursorLockMode.None;
+        gameManager.endBool = false;
 
     }
-
-
-    public void Quit()
-    {
-        SceneManager.LoadScene("MenuScene");
-    }
-
-
 
     public void ShowScore()
     {
         score.gameObject.SetActive(true);
         isShowingScore = true;
         button3.Select();
-
         isShowingStop = false;
         pauseMenu.SetActive(false);
 
@@ -153,10 +146,16 @@ public class PauseMenu : MonoBehaviour
     }
 
 
+
+
+
+
     public void RestartGame()
     {
         SceneManager.LoadScene("Gameworld-level1");
     }
+
+
 
     public void RestartLevel()
     {
@@ -175,5 +174,8 @@ public class PauseMenu : MonoBehaviour
 
     }
 
-
+    public void Quit()
+    {
+        SceneManager.LoadScene("MenuScene");
+    }
 }

@@ -23,7 +23,7 @@ public class NextSceneLevel : MonoBehaviour
         {
             SceneManager.LoadScene(3);
         }
-        else if (other.tag == "Steak" && gameManager.CollectedItems >= 5)
+        else if (other.tag == "Steak" && gameManager.CollectedItems >= 10)
         {
             winTriggered = true;
         }
@@ -33,7 +33,7 @@ public class NextSceneLevel : MonoBehaviour
     {
         if (winTriggered == true)
         {
-            winObject.gameObject.SetActive(true); 
+            winObject.gameObject.SetActive(true);
         }
 }
 }
