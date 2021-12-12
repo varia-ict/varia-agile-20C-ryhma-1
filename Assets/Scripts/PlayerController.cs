@@ -184,6 +184,13 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.AddForce(Vector3.up * 1000, ForceMode.Force);
         }
+
+        Enemy other = collision.gameObject.GetComponent<Enemy>();
+        if (other)
+        {
+            // HERE we know that the other object we collided with is an enemy
+            health -= 1;
+        }
     }
         #endregion
 }

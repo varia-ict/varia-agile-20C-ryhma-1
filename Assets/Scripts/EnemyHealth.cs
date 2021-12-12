@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int enemyHealth;
-    public int maxHealth;
+    public float health;
+    public float maxHealth;
+    public bool isDead;
 
     public GameObject healthBarUI;
     public Slider slider;
@@ -14,7 +15,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Start()
     {
-        enemyHealth = maxHealth;
+        health = maxHealth;
         slider.value = CalculateHealth();
     }
 
@@ -22,35 +23,44 @@ public class EnemyHealth : MonoBehaviour
     {
         slider.value = CalculateHealth();
 
-        if (enemyHealth < maxHealth)
+        if (health < maxHealth)
         {
             healthBarUI.SetActive(true);
         }
 
-        if (enemyHealth <= 0)
+        if(health > maxHealth)
         {
-            Destroy(gameObject);
+            health = maxHealth;
         }
 
-        if(enemyHealth > maxHealth)
+        if (health < 0)
         {
-            enemyHealth = maxHealth;
+            // add your death things here
+            animator.SetBool("Attack1", false);
+            animator.SetBool("Flying", false);
+            animator.SetBool("Battleidle", false);
+            animator.SetBool("idle", false);
+            animator.SetBool("Die", true);
+            IsDead();
         }
     }
 
     float CalculateHealth()
     {
-        return enemyHealth / maxHealth;
+        return health / maxHealth;
     }
 
     void TakeDamage(int damageAmount)
     {
-        enemyHealth = enemyHealth - damageAmount;
-        if (enemyHealth < 0)
+        health = health - damageAmount;
+    }
+
+    void IsDead()
+    {
+        if (health < 0)
         {
-            // add your death things here
-            animator.SetBool("Die", true);
-            Destroy(gameObject);
+            isDead = true;
+            GetComponent<Enemy>().enabled = false;
         }
     }
 }

@@ -60,12 +60,11 @@ public class Enemy : MonoBehaviour
         {
             Attack();
             timeBetweenAttacks = attackCooldown;
-        }
+        }        
     }
 
     public void Attack()
     {
-        
-    }
 
+    }
 }
