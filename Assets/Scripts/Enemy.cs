@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     public bool CD = false;
     private IEnumerator Coroutine;
     private float dist;
-    public float moveSpeed;
+    public float moveSpeed = 140;
     public float howclose;
     public float damage;
     public int hitRange = 10;

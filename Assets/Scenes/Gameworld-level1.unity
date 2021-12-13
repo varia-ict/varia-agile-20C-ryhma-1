@@ -4166,9 +4166,8 @@ MonoBehaviour:
   enemy: {fileID: 1772124112}
   animator: {fileID: 3221615771961560984}
   rb: {fileID: 1772124114}
-  rigidBody: {fileID: 0}
   CD: 0
-  moveSpeed: 10
+  moveSpeed: 140
   howclose: 10
   damage: 10
   hitRange: 10
@@ -4183,8 +4182,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.1317937, z: 1.1467252}
-  m_Center: {x: -1.0473662e-12, y: -0.06589687, z: 0.07336289}
+  m_Size: {x: 1, y: 1.2211466, z: 1.1467252}
+  m_Center: {x: -1.0473662e-12, y: -0.11057329, z: 0.07336289}
 --- !u!54 &1772124114
 Rigidbody:
   m_ObjectHideFlags: 0
