@@ -26,6 +26,9 @@ public class Enemy : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb.constraints = RigidbodyConstraints.FreezePositionY;
+        rb.constraints = RigidbodyConstraints.FreezePositionX;
+        rb.constraints = RigidbodyConstraints.FreezePositionZ;
+        rb.isKinematic = true;
     }
 
     // Update is called once per frame
@@ -39,9 +42,10 @@ public class Enemy : MonoBehaviour
             animator.SetBool("idle", false);
             animator.SetBool("BattleIdle", true);
             animator.SetBool("Flying", true);
-            rb.constraints = RigidbodyConstraints.FreezeAll;
+            rb.constraints = RigidbodyConstraints.None;
+            rb.isKinematic = false;
             transform.LookAt(player);
-            GetComponent<Rigidbody>().transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+            GetComponent<Rigidbody>().AddForce(transform.forward * moveSpeed);
         }
 
         if (dist >= howclose)

@@ -4166,8 +4166,9 @@ MonoBehaviour:
   enemy: {fileID: 1772124112}
   animator: {fileID: 3221615771961560984}
   rb: {fileID: 1772124114}
+  rigidBody: {fileID: 0}
   CD: 0
-  moveSpeed: 140
+  moveSpeed: 10
   howclose: 10
   damage: 10
   hitRange: 10
