@@ -73,11 +73,12 @@ public class PlayerController : MonoBehaviour
             { alive = false; }
 
             if (Input.GetKey(KeyCode.LeftShift))
-            { speed = sprintSpeed + pickup.bonusSpeed; }
+            { speed = sprintSpeed + pickup.bonusSpeed;
+            }
             else
             { speed = basicSpeed + pickup.bonusSpeed; }
 
-
+            
             //basic movement
             transform.Translate(Vector3.forward * speed * Time.deltaTime * verticalInput);
             if(verticalInput > 0)
