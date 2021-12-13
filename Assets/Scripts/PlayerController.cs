@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    #region variables
+        #region variables
     [Header("Game Objects")]
     public Rigidbody playerRb;
     private FootStepScript footStep;
     public GameObject GameOverScreen;
     private IEnumerator deathcounter;
+    private Slider healthBar;
 
     [Header("Movement speed related")]
     public float speed;
@@ -17,7 +19,6 @@ public class PlayerController : MonoBehaviour
     public float sprintSpeed = 5;
     private float horizontalInput;
     private float verticalInput;
-    private float verticalanimationInput;
 
     [Header("Jump related")]
     public float jumpStrength = 350;
@@ -43,6 +44,11 @@ public class PlayerController : MonoBehaviour
         footStep = FindObjectOfType<FootStepScript>();
         anim = GetComponent<Animator>();
         setKinematic(true);
+
+        //healthbar related
+        healthBar = GetComponent<Slider>();
+        healthBar.maxValue = maxHealth;
+        healthBar.value = health;
     }
         #endregion
 
@@ -52,7 +58,8 @@ public class PlayerController : MonoBehaviour
 
         if (alive)
         {
-            if(health > maxHealth)
+            healthBar.value = health;
+            if (health > maxHealth)
             {
                 health = maxHealth;
             }
@@ -185,5 +192,8 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(Vector3.up * 1000, ForceMode.Force);
         }
     }
-        #endregion
+    #endregion
+    #region Health
+
+    #endregion
 }
