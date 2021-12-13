@@ -4165,11 +4165,12 @@ MonoBehaviour:
   player: {fileID: 2211039095961876976}
   enemy: {fileID: 1772124112}
   animator: {fileID: 3221615771961560984}
+  rb: {fileID: 1772124114}
+  CD: 0
   moveSpeed: 140
   howclose: 10
-  attackCooldown: 2
-  timeBetweenAttacks: 1
   damage: 10
+  hitRange: 10
 --- !u!65 &1772124113
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4181,8 +4182,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.1317937, z: 1.1467252}
+  m_Center: {x: -1.0473662e-12, y: -0.06589687, z: 0.07336289}
 --- !u!54 &1772124114
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4197,7 +4198,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &1772124115
 MonoBehaviour:
@@ -4214,6 +4215,7 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   isDead: 0
+  destroyOnDeath: 0
   healthBarUI: {fileID: 2013204677}
   slider: {fileID: 87440107}
   animator: {fileID: 3221615771961560984}
@@ -5087,6 +5089,10 @@ PrefabInstance:
       objectReference: {fileID: 1738187092}
     - target: {fileID: 4850519767506846009, guid: d2afd6e31089a3d4cb79fd4008c8ba52, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4850519767506846009, guid: d2afd6e31089a3d4cb79fd4008c8ba52, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5649482517215425993, guid: d2afd6e31089a3d4cb79fd4008c8ba52, type: 3}

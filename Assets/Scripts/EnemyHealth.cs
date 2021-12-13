@@ -8,7 +8,9 @@ public class EnemyHealth : MonoBehaviour
     public float health;
     public float maxHealth;
     public bool isDead;
+    public bool destroyOnDeath = false;
 
+    private IEnumerator Coroutine;
     public GameObject healthBarUI;
     public Slider slider;
     public Animator animator;
@@ -57,10 +59,21 @@ public class EnemyHealth : MonoBehaviour
 
     void IsDead()
     {
-        if (health < 0)
+        if (health < 0 && destroyOnDeath == false)
         {
             isDead = true;
             GetComponent<Enemy>().enabled = false;
+            destroyOnDeath = true;
+            Coroutine = DestroyOnDeath();
+            StartCoroutine(Coroutine);
         }
+    }
+
+    private IEnumerator DestroyOnDeath()
+    {
+
+        yield return new WaitForSeconds(3);
+        destroyOnDeath = false;
+        Destroy(gameObject);
     }
 }
