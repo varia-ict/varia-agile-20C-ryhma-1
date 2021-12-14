@@ -18,7 +18,7 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-        slider.value = CalculateHealth();
+        //slider.value = CalculateHealth();
     }
 
     void Update()
@@ -61,11 +61,13 @@ public class EnemyHealth : MonoBehaviour
     {
         if (health < 0 && destroyOnDeath == false)
         {
+            Destroy(gameObject);
             isDead = true;
             GetComponent<Enemy>().enabled = false;
             destroyOnDeath = true;
             Coroutine = DestroyOnDeath();
             StartCoroutine(Coroutine);
+
         }
     }
 
