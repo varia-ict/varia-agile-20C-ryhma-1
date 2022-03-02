@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,14 +9,13 @@ public class PlayerController : MonoBehaviour
     private FootStepScript footStep;
     public GameObject GameOverScreen;
     private IEnumerator deathcounter;
-
+    
     [Header("Movement speed related")]
     public float speed;
     public float basicSpeed = 3;
     public float sprintSpeed = 5;
     private float horizontalInput;
     private float verticalInput;
-    private float verticalanimationInput;
 
     [Header("Jump related")]
     public float jumpStrength = 350;

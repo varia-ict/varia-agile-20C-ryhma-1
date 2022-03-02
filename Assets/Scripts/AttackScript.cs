@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackScript : MonoBehaviour
@@ -26,7 +25,6 @@ public class AttackScript : MonoBehaviour
         {
             anim.SetBool("attack", false);
         }
-        
     }
     void Attack()
     {
@@ -38,21 +36,18 @@ public class AttackScript : MonoBehaviour
         {
             if (hit.transform.gameObject.tag == "Enemy" && CD == false)
             {
-                
                 hit.transform.gameObject.SendMessage("TakeDamage", 30);
                 Vector3 orward = transform.TransformDirection(Vector3.forward) * 10;
                 CD = true;
                 Coroutine = CoolDown();
                 StartCoroutine(Coroutine);
-
             }
         }
     }
     private IEnumerator CoolDown()
     {
-        
         yield return new WaitForSeconds(1);
-            CD = false;
+        CD = false;
     }
 
-        }
+}

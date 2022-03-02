@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -23,7 +22,6 @@ public class SpawnManager : MonoBehaviour
             Vector3 PosToSpawn = new Vector3(randomX, 7, 0);
             GameObject newEnemy = Instantiate(enemyprefab, PosToSpawn, Quaternion.identity);
             newEnemy.transform.parent = enemyContainer.transform;
-            
         }
     }
 
@@ -31,9 +29,7 @@ public class SpawnManager : MonoBehaviour
     {
         float random = Random.Range(-9.5f, 9.5f);
         Vector3 PosToSpawn = new Vector3(randomX, 7, 0);
-        Instantiate(enemyprefab, PosToSpawn, enemyprefab.transform.rotation);
-
-        
+        Instantiate(enemyprefab, PosToSpawn, enemyprefab.transform.rotation); 
     }
 
     public void OnPlayerDeath()
