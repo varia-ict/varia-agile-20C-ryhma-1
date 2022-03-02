@@ -4,7 +4,7 @@ This project was made in Unity using C# scripts while implementing Agile/Scrum m
 
 ## To Play
 
-After cloning, open the project in Unity. Ensure you are on Scene/Level 1 and press the play button. Check that your mouse is inside the play window, and you are ready to play! The objective is to defeat enemies, find all the collectables and after that find the prize food! Controls: Mouse & WASD.
+After cloning, open the project in Unity. Ensure you are on Scene/Level 1 and press the play button. Check that your mouse is inside the play window, and you are ready to start! The objective is to defeat enemies, find all the collectables and after that find the prize food! Controls: Mouse & WASD.
 
 ## Credits
 
