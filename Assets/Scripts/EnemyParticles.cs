@@ -1,9 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyParticles : MonoBehaviour {
-
 private bool parTriggered;	
 public GameObject enemyPartObject;
 		
@@ -40,7 +38,7 @@ void FixedUpdate ()
   if(parTriggered == false)
   {
     StopCoroutine("EnemyParticleTimer");
-  }
+  }	
+}	
 	
-}		
 }

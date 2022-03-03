@@ -1,13 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Particles : MonoBehaviour {
-
 private bool parTriggered;	
 public GameObject partObject;
 		
-
 IEnumerator ParticleTimer()
 {
     partObject.gameObject.SetActive(true);
@@ -41,6 +38,6 @@ void FixedUpdate ()
   {
     StopCoroutine("ParticleTimer");
   }
+}	
 	
-}		
 }

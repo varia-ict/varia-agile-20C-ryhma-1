@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -21,15 +19,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Scene currentScene = SceneManager.GetActiveScene();
-
         sceneName = currentScene.name;
-
         CollectedItems = 00;
         endBool = true;
         SetInitialCollectedItems();
-       
-
-        
     }
 
     private void Update()
@@ -46,7 +39,6 @@ public class GameManager : MonoBehaviour
             PickUpScore.SetActive(false);
             challenge.SetActive(true);
             endBool = false;
-            
         }
     }
 
@@ -58,7 +50,6 @@ public class GameManager : MonoBehaviour
 
     public void UpdateCollectedItems()
     {
-
         DisplayCollectedItems(CollectedItems);
     }
 
@@ -71,7 +62,6 @@ public class GameManager : MonoBehaviour
         {
             CollectedItemsText.text = count + "/10";
         }
-        
     }
 
    

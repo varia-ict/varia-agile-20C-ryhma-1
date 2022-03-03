@@ -1,17 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FootStepScript : MonoBehaviour
 {
-
     public bool inGrass;
     public bool inWater;
     public bool inWood;
     public bool inDirt;
-
     private PlayerController playerController;
-
     private AudioSource audioSource;
     public AudioClip waterClip;
     public AudioClip grassClip;

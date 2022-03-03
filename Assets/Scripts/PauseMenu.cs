@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -21,7 +18,6 @@ public class PauseMenu : MonoBehaviour
     public GameObject challenge;
     private GameManager gameManager;
     public GameObject effect1;
-    public GameObject effect2;
 
     // Start is called before the first frame update
     void Start()
@@ -62,8 +58,6 @@ public class PauseMenu : MonoBehaviour
             isShowingStop = true;
             button.Select();
         }
-
-
 
     }
 
@@ -115,7 +109,6 @@ public class PauseMenu : MonoBehaviour
     }
 
 
-
    public void Restart()
     {
         restart.gameObject.SetActive(true);
@@ -124,7 +117,6 @@ public class PauseMenu : MonoBehaviour
         isShowingStop = false;
         button2.Select();
     }
-
 
 
     public void Back() {
@@ -146,15 +138,10 @@ public class PauseMenu : MonoBehaviour
     }
 
 
-
-
-
-
     public void RestartGame()
     {
         SceneManager.LoadScene("Gameworld-level1");
     }
-
 
 
     public void RestartLevel()

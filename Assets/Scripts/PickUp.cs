@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -10,7 +8,6 @@ public class PickUp : MonoBehaviour
     public AudioClip pickUpSound;
     private PlayerController playerController;
     private GameManager gameManager;
-
     public TextMeshProUGUI effect1;
 
     
