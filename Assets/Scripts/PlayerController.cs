@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,13 +11,14 @@ public class PlayerController : MonoBehaviour
     private FootStepScript footStep;
     public GameObject GameOverScreen;
     private IEnumerator deathcounter;
-    
+    private Slider healthBar;
     [Header("Movement speed related")]
     public float speed;
     public float basicSpeed = 3;
     public float sprintSpeed = 5;
     private float horizontalInput;
     private float verticalInput;
+    private float verticalanimationInput;
 
     [Header("Jump related")]
     public float jumpStrength = 350;
@@ -28,19 +31,28 @@ public class PlayerController : MonoBehaviour
     Animator anim;
     private PickUp pickup;
 
+
+
     [Header("Health")]
     public float health = 100;
     private float maxHealth = 100;
     public bool alive;
-            #endregion
 
-        #region activate and set gameobjects
+    #endregion
+
+    #region activate and set gameobjects
     void Start()
     {
+        //gets and finds all gameovjects
         pickup = gameObject.GetComponent<PickUp>();
         footStep = FindObjectOfType<FootStepScript>();
         anim = GetComponent<Animator>();
         setKinematic(true);
+
+        //healthbar related
+        healthBar = GetComponent<Slider>();
+        healthBar.maxValue = maxHealth;
+        healthBar.value = health;
     }
         #endregion
 
@@ -50,7 +62,8 @@ public class PlayerController : MonoBehaviour
 
         if (alive)
         {
-            if(health > maxHealth)
+            healthBar.value = health;
+            if (health > maxHealth)
             {
                 health = maxHealth;
             }
@@ -102,8 +115,8 @@ public class PlayerController : MonoBehaviour
                 isMoving = false;
             }
         }
-    #region death related       
-        if (health <= 0)
+        #region death related       
+        if (health <= 0 || Input.GetKeyDown(KeyCode.Backspace))
         {
             alive = false;
         }
@@ -183,5 +196,9 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(Vector3.up * 1000, ForceMode.Force);
         }
     }
-        #endregion
+    void TakeDamage(int damageAmount)
+    {
+        health = health - damageAmount;
+    }
+    #endregion
 }
