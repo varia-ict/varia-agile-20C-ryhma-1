@@ -16,6 +16,6 @@ Amanda Kankkonen: NextSceneLevel, Particles and EnemyParticles scripts. Also aid
 
 Jesse Nordman: Enemy script, and acquired related Enemy assets. Also helped with the overall concept & idea of the game.
 
-Bikiltu Terfa: SpawnManager, GameManager, Canvas & UI. Helped greatly in creating the playground for the game and finding suitable assets for every level.
+Bikiltu Terfa: SpawnManager script, GameManager script, Canvas & UI. Helped greatly in creating the playground for the game and finding suitable assets for every level.
 
 Mehdi Zaidane: FootStepScript, PickUp, and PauseMenu scripts. Also coded sound effects and background music into existing scripts, as well as acquiring suitable assets. 
